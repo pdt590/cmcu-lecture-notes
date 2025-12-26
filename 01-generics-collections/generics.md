@@ -169,3 +169,116 @@ public class Main {
 | Interface  | `Repository<T>`       |
 | Class      | `MemoryRepository<T>` |
 | Method     | `<E> void print(E e)` |
+
+# 🧵 Ví dụ <? extends T> và <? super T>
+
+## 🔹 <? extends T> và <? super T> là gì?
+
+| Wildcard        | Ý nghĩa                    |
+| --------------- | -------------------------- |
+| `<? extends T>` | T hoặc **class con của T** |
+| `<? super T>`   | T hoặc **class cha của T** |
+
+## 🧠 Nguyên tắc PECS (rất quan trọng)
+
+>PECS = Producer Extends – Consumer Super
+
+| Trường hợp        | Dùng      |
+| ----------------- | --------- |
+| Chỉ đọc (produce) | `extends` |
+| Chỉ ghi (consume) | `super`   |
+
+
+## 1️⃣ Ví dụ <? extends T> (Producer – chỉ đọc)
+
+**Class kế thừa**
+
+```java
+class Animal {
+    void sound() {
+        System.out.println("Animal sound");
+    }
+}
+```
+
+```java
+class Dog extends Animal {
+    void sound() {
+        System.out.println("Dog sound");
+    }
+}
+```
+
+**Sử dụng extends**
+
+```java
+import java.util.List;
+
+public class ExtendsExample {
+
+    public static void makeSound(List<? extends Animal> animals) {
+        for (Animal a : animals) {
+            a.sound(); // ✅ đọc OK
+        }
+
+        // animals.add(new Dog()); // ❌ KHÔNG cho phép
+    }
+}
+```
+
+**Gọi method**
+
+```java
+List<Dog> dogs = List.of(new Dog(), new Dog());
+makeSound(dogs); // OK
+```
+
+## 🔍 Vì sao không add được?
+
+Compiler không biết chính xác kiểu con nào của Animal
+
+## 2️⃣ Ví dụ <? super T> (Consumer – chỉ ghi)
+
+**Sử dụng super**
+
+```java
+import java.util.List;
+
+public class SuperExample {
+
+    public static void addDogs(List<? super Dog> list) {
+        list.add(new Dog()); // ✅ ghi OK
+        // Dog d = list.get(0); // ❌ không an toàn
+    }
+}
+```
+
+**Gọi method**
+
+```java
+List<Animal> animals = new ArrayList<>();
+addDogs(animals); // OK
+
+List<Object> objects = new ArrayList<>();
+addDogs(objects); // OK
+```
+
+**Đọc dữ liệu**
+
+```java
+Object obj = animals.get(0); // chỉ đọc được Object
+```
+
+## 🧩 So sánh nhanh
+
+| Tiêu chí  | `extends` | `super`      |
+| --------- | --------- | ------------ |
+| Quan hệ   | Con của T | Cha của T    |
+| Đọc (get) | ✅ T       | ❌ chỉ Object |
+| Ghi (add) | ❌         | ✅            |
+| Mục đích  | Read      | Write        |
+
+
+## 🎯 Câu trả lời phỏng vấn chuẩn
+
+><\? extends T> dùng khi chỉ đọc dữ liệu từ collection, còn <? super T> dùng khi cần ghi dữ liệu vào collection, theo nguyên tắc PECS (Producer Extends, Consumer Super).
