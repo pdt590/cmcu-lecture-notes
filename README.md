@@ -1,32 +1,53 @@
-# PROG3003 - Java Programming
+# PROG3003-Java Programming
 
-## Design Patterns examples
+## Chapter 1. Generics & Collections
+
+## Chapter 2. Design Patterns
 
 - Creational Patterns (6)
-  - [Singleton](./design-patterns/creational-patterns/singleton.md)
-  - [Factory Method](./design-patterns/creational-patterns/factory-method.md)
-  - [Abstract Factory](./design-patterns/creational-patterns/abstract-factory.md)
-  - [Builder](./design-patterns/creational-patterns/builder.md)
-  - [Prototype](./design-patterns/creational-patterns/prototype.md)
+  - [Singleton](./02-design-patterns/creational-patterns/singleton.md)
+  - [Factory Method](./02-design-patterns/creational-patterns/factory-method.md)
+  - [Abstract Factory](./02-design-patterns/creational-patterns/abstract-factory.md)
+  - [Builder](./02-design-patterns/creational-patterns/builder.md)
+  - [Prototype](./02-design-patterns/creational-patterns/prototype.md)
   - Object Pool
 
 - Structural Patterns (7)
-  - [Adapter](./design-patterns/structural-patterns/adapter.md)
-  - [Bridge](./design-patterns/structural-patterns/bridge.md)
+  - [Adapter](./02-design-patterns/structural-patterns/adapter.md)
+  - [Bridge](./02-design-patterns/structural-patterns/bridge.md)
   - [Composite](./design-patterns/structural-patterns/composite.md)
-  - [Decorator](./design-patterns/structural-patterns/decorator.md)
-  - [Facade](./design-patterns/structural-patterns/facade.md)
+  - [Decorator](./02-design-patterns/structural-patterns/decorator.md)
+  - [Facade](./02-design-patterns/structural-patterns/facade.md)
   - Flyweight
-  - [Proxy](./design-patterns/structural-patterns/proxy.md)
+  - [Proxy](./02-design-patterns/structural-patterns/proxy.md)
 
 - Behavioral Patterns (10)
-  - [Command](./design-patterns/behavioral-patterns/command.md)
+  - [Command](./02-design-patterns/behavioral-patterns/command.md)
   - Interpreter
   - Iterator
-  - [Mediator](./design-patterns/behavioral-patterns/mediator.md)
-  - [Observer](./design-patterns/behavioral-patterns/observer.md)
+  - [Mediator](./02-design-patterns/behavioral-patterns/mediator.md)
+  - [Observer](./02-design-patterns/behavioral-patterns/observer.md)
   - State
-  - [Strategy](./design-patterns/behavioral-patterns/strategy.md)
+  - [Strategy](./02-design-patterns/behavioral-patterns/strategy.md)
   - Chain of Responsibility
   - Visitor
   - Template Method
+
+- Others
+  - [Observer+generics+collection](./02-design-patterns/observer-pattern-generics-collection.md)
+  - [Strategy+generics+collection](./02-design-patterns/strategy-pattern-generics-collection.md)
+
+## Chapter 3. Non-sequential programming
+
+- Multithread programming
+  - [Thread](./03-non-sequential-prog/thread.md)
+  - [Runable](./03-non-sequential-prog/runable.md)
+
+- Asynchronous programming
+  - [CompletableFuture](./03-non-sequential-prog/completablefuture.md)
+
+## Chapter 4. Function programming
+
+## Chapter 5. Database
+
+## Chapter 6. GUI programming
