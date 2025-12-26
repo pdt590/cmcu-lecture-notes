@@ -1,13 +1,6 @@
-# 🧵 Ví dụ: Generics
+# 🧵 Ví dụ: Generics với ký tự T, E, K, V
 
-## 🎯 Mục tiêu ví dụ
-
-- Hiểu ý nghĩa của T, E, K, V
-- Thấy cách dùng generics trong class + method + collection
-
-## ✅ Ví dụ hoàn chỉnh
-
-### 1️⃣ Generic Class dùng T (Type)
+## 1️⃣ Generic Class dùng T (Type)
 
 ```java
 class Box<T> {
@@ -25,7 +18,7 @@ class Box<T> {
 
 📌 T = Type bất kỳ
 
-### 2️⃣ Generic Collection dùng E (Element)
+## 2️⃣ Generic Class dùng E (Element) trong Collection
 
 ```java
 class SimpleList<E> {
@@ -44,7 +37,7 @@ class SimpleList<E> {
 
 📌 E = phần tử trong collection
 
-### 3️⃣ Generic Map dùng K, V (Key – Value)
+## 3️⃣ Generic Class dùng K, V (Key – Value) trong Map
 
 ```java
 import java.util.HashMap;
@@ -90,3 +83,89 @@ public class GenericDemo {
     }
 }
 ```
+
+# 🎯 Ví dụ Generics với Class, Interface và Method
+
+## 1️⃣ Generic Interface
+
+```java
+// Interface generic
+public interface Repository<T> {
+    void save(T item);
+    T findById(int id);
+}
+```
+
+📌 T đại diện cho kiểu dữ liệu tổng quát
+
+## 2️⃣ Generic Class implements Generic Interface
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+// Class generic
+public class MemoryRepository<T> implements Repository<T> {
+
+    private List<T> data = new ArrayList<>();
+
+    @Override
+    public void save(T item) {
+        data.add(item);
+    }
+
+    @Override
+    public T findById(int id) {
+        if (id < data.size()) {
+            return data.get(id);
+        }
+        return null;
+    }
+}
+```
+
+📌 Class này không quan tâm T là gì
+
+## 3️⃣ Generic Method
+
+```java
+public class Printer {
+
+    // Method generic độc lập với class
+    public static <E> void print(E element) {
+        System.out.println(element);
+    }
+}
+```
+
+📌 <E> chỉ tồn tại trong method
+
+## 4️⃣ Sử dụng Generics
+
+```java
+public class Main {
+    public static void main(String[] args) {
+
+        // Generic Class + Interface
+        Repository<String> stringRepo = new MemoryRepository<>();
+        stringRepo.save("Java");
+        stringRepo.save("Generics");
+
+        String value = stringRepo.findById(0);
+        System.out.println(value);
+
+        // Generic Method
+        Printer.print(100);
+        Printer.print("Hello");
+        Printer.print(3.14);
+    }
+}
+```
+
+## 🧠 Tóm tắt nhanh
+
+| Thành phần | Generics              |
+| ---------- | --------------------- |
+| Interface  | `Repository<T>`       |
+| Class      | `MemoryRepository<T>` |
+| Method     | `<E> void print(E e)` |
