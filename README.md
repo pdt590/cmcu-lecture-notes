@@ -2,6 +2,9 @@
 
 ## Chapter 1. Generics & Collections
 
+- [Generics](./01-generics-collections/generics.md)
+- [Collections](./01-generics-collections/collections.md)
+
 ## Chapter 2. Design Patterns
 
 - Creational Patterns (6)
