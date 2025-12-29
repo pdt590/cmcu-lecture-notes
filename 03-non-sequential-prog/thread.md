@@ -1,6 +1,6 @@
 # 🧵 Ví dụ: Multithread
 
-## 🎯 Bài toán sử dụng Thread
+## 🎯 Sử dụng Thread
 
 Tạo 2 luồng:
 
@@ -85,60 +85,8 @@ LetterThread: C
 | `start()` | Tạo **luồng mới**, gọi `run()`                 |
 | `run()`   | Chạy như **hàm bình thường**, không tạo thread |
 
-## 🎯 Bài toán sử dụng Thread Pool
 
-### 🧵 Thread Pool là gì?
-
-Thread Pool trong Java là một tập hợp (pool) các thread được tạo sẵn và tái sử dụng để thực thi nhiều task khác nhau, thay vì tạo mới thread mỗi lần có công việc.
-
-> 💡 Ý tưởng cốt lõi:
-> Tạo thread một lần → dùng lại nhiều lần → quản lý tập trung
-
-### 🧠 Thread Pool hoạt động thế nào?
-
-1. Thread pool tạo sẵn N thread
-2. Task được đưa vào queue
-3. Thread rảnh sẽ lấy task ra xử lý
-4. Xong task → thread quay lại pool
-
-### 📊 So sánh nhanh các loại Thread Pool
-
-| Thread Pool                 | Đặc điểm                  |
-| --------------------------- | ------------------------- |
-| `newFixedThreadPool(n)`     | Giới hạn thread           |
-| `newCachedThreadPool()`     | Linh hoạt, không giới hạn |
-| `newSingleThreadExecutor()` | 1 thread                  |
-| `newScheduledThreadPool(n)` | Chạy theo lịch            |
-
-### 🧪 Fixed Thread Pool (phổ biến nhất)
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-```java
-public class FixedThreadPoolExample {
-
-    public static void main(String[] args) {
-
-        ExecutorService executor = Executors.newFixedThreadPool(3);
-
-        for (int i = 1; i <= 5; i++) {
-            int taskId = i;
-            executor.execute(() -> {
-                System.out.println(
-                    "Task " + taskId +
-                    " chạy trên " +
-                    Thread.currentThread().getName()
-                );
-            });
-        }
-
-        executor.shutdown();
-    }
-}
-```
-
-## 🎯 Bài toán sử dụng Runnable
+## 🎯 Sử dụng Runnable
 
 Tạo 2 luồng:
 
@@ -286,3 +234,56 @@ public class Main {
 | Khuyến nghị | ❌ Ít dùng       | ✅ Nên dùng           |
 
 📌 Best Practice: dùng Runnable
+
+## 🎯 Sử dụng Thread Pool
+
+### 🧵 Thread Pool là gì?
+
+Thread Pool trong Java là một tập hợp (pool) các thread được tạo sẵn và tái sử dụng để thực thi nhiều task khác nhau, thay vì tạo mới thread mỗi lần có công việc.
+
+> 💡 Ý tưởng cốt lõi:
+> Tạo thread một lần → dùng lại nhiều lần → quản lý tập trung
+
+### 🧠 Thread Pool hoạt động thế nào?
+
+1. Thread pool tạo sẵn N thread
+2. Task được đưa vào queue
+3. Thread rảnh sẽ lấy task ra xử lý
+4. Xong task → thread quay lại pool
+
+### 📊 So sánh nhanh các loại Thread Pool
+
+| Thread Pool                 | Đặc điểm                  |
+| --------------------------- | ------------------------- |
+| `newFixedThreadPool(n)`     | Giới hạn thread           |
+| `newCachedThreadPool()`     | Linh hoạt, không giới hạn |
+| `newSingleThreadExecutor()` | 1 thread                  |
+| `newScheduledThreadPool(n)` | Chạy theo lịch            |
+
+### 🧪 Fixed Thread Pool (phổ biến nhất)
+
+```java
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class FixedThreadPoolExample {
+
+    public static void main(String[] args) {
+
+        ExecutorService executor = Executors.newFixedThreadPool(3);
+
+        for (int i = 1; i <= 5; i++) {
+            int taskId = i;
+            executor.execute(() -> {
+                System.out.println(
+                    "Task " + taskId +
+                    " chạy trên " +
+                    Thread.currentThread().getName()
+                );
+            });
+        }
+
+        executor.shutdown();
+    }
+}
+```
