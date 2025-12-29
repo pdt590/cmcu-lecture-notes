@@ -44,12 +44,11 @@
 
 - Multithread programming
   - [Thread](./03-non-sequential-prog/thread.md)
-  - [Runable](./03-non-sequential-prog/runable.md)
 
 - Asynchronous programming
   - [CompletableFuture](./03-non-sequential-prog/completablefuture.md)
 
-## Chapter 4. Function programming
+## Chapter 4. Functional programming
 
 ## Chapter 5. Database
 
