@@ -59,7 +59,7 @@ class SimpleCache<K, V> {
 📌 K = Key
 📌 V = Value
 
-4️⃣ Sử dụng trong main
+## 4️⃣ Sử dụng trong main
 
 ```java
 public class GenericDemo {
@@ -233,7 +233,7 @@ List<Dog> dogs = List.of(new Dog(), new Dog());
 makeSound(dogs); // OK
 ```
 
-## 🔍 Vì sao không add được?
+🔍 Vì sao không add được?
 
 Compiler không biết chính xác kiểu con nào của Animal
 

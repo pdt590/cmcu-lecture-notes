@@ -56,4 +56,7 @@
 
 ## Chapter 5. Database
 
+- [JDBC](./05-database/jdbc.md)
+- [Hibernate](./05-database/hibernate.md)
+
 ## Chapter 6. GUI programming
