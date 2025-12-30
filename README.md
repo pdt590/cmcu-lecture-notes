@@ -50,6 +50,10 @@
 
 ## Chapter 4. Functional programming
 
+- [Lambda expressions](./04-functional-programming/lambda-expressions.md)
+- [Functional interfaces](./04-functional-programming/functional-interfaces.md)
+- [Streams API](./04-functional-programming/streams-api.md)
+
 ## Chapter 5. Database
 
 ## Chapter 6. GUI programming
