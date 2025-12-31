@@ -1,3 +1,186 @@
+# 🚀 Mini Project: Simple Product Management (Hibernate JPA)
+
+## 🎯 Mục tiêu
+
+- Cấu hình Hibernate JPA thuần
+- Mapping @Entity
+- CRUD bằng EntityManager
+- Không DAO, không Service, không Framework
+
+## 🏗️ Cấu trúc Project
+
+```java
+SimpleJPA/
+│
+├── src/main/java/
+│   ├── Product.java
+│   └── Main.java
+│
+├── src/main/resources/
+│   └── META-INF/
+│       └── persistence.xml
+│
+└── pom.xml
+```
+
+## 🗄️ 1. Database MySQL
+
+```sql
+CREATE DATABASE simple_jpa;
+USE simple_jpa;
+
+CREATE TABLE products (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    price DOUBLE
+);
+```
+
+## 📦 2. Entity – Product.java
+
+```java
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "products")
+public class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+    private double price;
+
+    public Product() {}
+
+    public Product(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    // Getter & Setter
+    public Long getId() { return id; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
+}
+```
+
+## ⚙️ 3. persistence.xml
+
+```xml
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             version="3.0">
+    <persistence-unit name="simplePU">
+        <class>Product</class>
+
+        <properties>
+            <property name="jakarta.persistence.jdbc.driver"
+                      value="com.mysql.cj.jdbc.Driver"/>
+
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:mysql://localhost:3306/simple_jpa?useSSL=false"/>
+
+            <property name="jakarta.persistence.jdbc.user"
+                      value="root"/>
+
+            <property name="jakarta.persistence.jdbc.password"
+                      value="123456"/>
+
+            <property name="hibernate.dialect"
+                      value="org.hibernate.dialect.MySQL8Dialect"/>
+
+            <property name="hibernate.hbm2ddl.auto"
+                      value="update"/>
+
+            <property name="hibernate.show_sql"
+                      value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
+```
+
+## ▶️ 4. Main – Main.java (CRUD trực tiếp)
+
+```java
+import jakarta.persistence.*;
+
+import java.util.List;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        EntityManagerFactory emf =
+                Persistence.createEntityManagerFactory("simplePU");
+
+        EntityManager em = emf.createEntityManager();
+
+        // ================= CREATE =================
+        em.getTransaction().begin();
+        em.persist(new Product("Laptop", 1500));
+        em.persist(new Product("Mouse", 20));
+        em.getTransaction().commit();
+
+        // ================= READ ALL =================
+        List<Product> products =
+                em.createQuery("FROM Product", Product.class)
+                  .getResultList();
+
+        System.out.println("Product list:");
+        products.forEach(p ->
+                System.out.println(p.getId() + " - " +
+                        p.getName() + " - " + p.getPrice())
+        );
+
+        // ================= UPDATE =================
+        em.getTransaction().begin();
+        Product p = em.find(Product.class, 1L);
+        if (p != null) {
+            p.setPrice(1700);
+        }
+        em.getTransaction().commit();
+
+        // ================= DELETE =================
+        em.getTransaction().begin();
+        Product deleteP = em.find(Product.class, 2L);
+        if (deleteP != null) {
+            em.remove(deleteP);
+        }
+        em.getTransaction().commit();
+
+        em.close();
+        emf.close();
+    }
+}
+
+```
+
+## 🧠 Kiến thức JPA cốt lõi trong project
+
+- `@Entity`, `@Id`, `@GeneratedValue`
+- `EntityManagerFactory`
+- `EntityManager`
+- `persist()`, `find()`, `remove()`
+- Transaction (`begin`, `commit`)
+- JPQL: `FROM Product`
+
+## 🧪 Output ví dụ
+
+```bash
+Hibernate: insert into products (name,price) values (?,?)
+Hibernate: insert into products (name,price) values (?,?)
+Product list:
+1 - Laptop - 1500.0
+2 - Mouse - 20.0
+Hibernate: update products set price=? where id=?
+Hibernate: delete from products where id=?
+```
+
 # 🚀 Mini Project: Employee Management System (Hibernate JPA + HQL)
 
 ## 🎯 Mục tiêu
