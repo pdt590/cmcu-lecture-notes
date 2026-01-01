@@ -1,4 +1,4 @@
-# 🚀 Mini Project: Simple User Management (JDBC + MySQL)
+# 🚀 Mini Project: Simple User Management (Maven + JDBC + MySQL)
 
 ## 🎯 Mục tiêu
 
@@ -12,8 +12,9 @@
 ```java
 SimpleJDBC/
 │
-├── Main.java
-└── mysql-connector-j-8.x.x.jar
+├── src/main/java/
+│   └── Main.java
+└── pom.xml
 ```
 
 ## 🗄️ 1. Database MySQL
@@ -29,12 +30,32 @@ CREATE TABLE users (
 );
 ```
 
-## 🔌 2. Kết nối CSDL
+## 🔌 2. pom.xml - thêm dependency MySQL connector
 
-```java
-String url = "jdbc:mysql://localhost:3306/simple_jdbc?useSSL=false&serverTimezone=UTC";
-String user = "root";
-String password = "123456";
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                            http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.cmc</groupId>
+    <artifactId>SimpleJDBC</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>25</maven.compiler.release>
+        <exec.mainClass>com.cmc.simplejdbc.SimpleJDBC</exec.mainClass>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>9.5.0</version> <!-- or latest version -->
+        </dependency>
+    </dependencies>
+</project>
 ```
 
 ## ▶️ 3. Code Hoàn Chỉnh – Main.java
@@ -156,7 +177,7 @@ Updated user successfully!
 Deleted user successfully!
 ```
 
-# 🚀 Mini Project: Student Management System (JDBC + MySQL + DAO)
+# 🚀 Mini Project: Student Management System (Maven + JDBC + MySQL + DAO)
 
 ## 🎯 Mục tiêu
 
@@ -183,8 +204,7 @@ student-management-jdbc/
 │   │
 │   └── Main.java
 │
-└── lib/
-    └── mysql-connector-j-8.x.x.jar
+└── pom.xml
 ```
 
 ## Code chi tiết
@@ -203,7 +223,37 @@ CREATE TABLE students (
 );
 ```
 
-### 🔌 2. Kết nối MySQL – DBConnection.java
+### 🔌 2. Kết nối MySQL
+
+**pom.xml - thêm dependency MySQL connector**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                            http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.cmc</groupId>
+    <artifactId>SimpleJDBC</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>25</maven.compiler.release>
+        <exec.mainClass>com.cmc.simplejdbc.SimpleJDBC</exec.mainClass>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>9.5.0</version> <!-- or latest version -->
+        </dependency>
+    </dependencies>
+</project>
+```
+
+**DBConnection.java**
 
 ```java
 package util;
