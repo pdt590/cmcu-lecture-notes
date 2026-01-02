@@ -170,115 +170,185 @@ public class Main {
 | Class      | `MemoryRepository<T>` |
 | Method     | `<E> void print(E e)` |
 
-# 🧵 Ví dụ <? extends T> và <? super T>
+# 🧵 Ví dụ: Wildcard (?)
 
-## 🔹 <? extends T> và <? super T> là gì?
+## 🎯 Mục tiêu
 
-| Wildcard        | Ý nghĩa                    |
-| --------------- | -------------------------- |
-| `<? extends T>` | T hoặc **class con của T** |
-| `<? super T>`   | T hoặc **class cha của T** |
+- Hiểu `<? extends T>` (Upper Bounded)
+- Hiểu `<? super T>` (Lower Bounded)
+- Hiểu `<?>` (Unbounded)
+- Biết khi nào đọc được, khi nào ghi được dữ liệu
 
-## 🧠 Nguyên tắc PECS (rất quan trọng)
-
->PECS = Producer Extends – Consumer Super
-
-| Trường hợp        | Dùng      |
-| ----------------- | --------- |
-| Chỉ đọc (produce) | `extends` |
-| Chỉ ghi (consume) | `super`   |
-
-
-## 1️⃣ Ví dụ <? extends T> (Producer – chỉ đọc)
-
-**Class kế thừa**
+## 📂 Cấu trúc project
 
 ```java
-class Animal {
-    void sound() {
-        System.out.println("Animal sound");
+generic-wildcard-demo
+│
+├── Product.java
+├── Electronics.java
+├── Food.java
+├── ProductService.java
+└── Main.java
+```
+
+## 1️⃣ Lớp cơ sở Product
+
+```java
+public abstract class Product {
+    protected String name;
+    protected double price;
+
+    public Product(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public String getName() {
+        return name;
     }
 }
 ```
 
+## 2️⃣ Các lớp con
+
+**Electronics.java**
+
 ```java
-class Dog extends Animal {
-    void sound() {
-        System.out.println("Dog sound");
+public class Electronics extends Product {
+    public Electronics(String name, double price) {
+        super(name, price);
     }
 }
 ```
 
-**Sử dụng extends**
+**Food.java**
+
+```java
+public class Food extends Product {
+    public Food(String name, double price) {
+        super(name, price);
+    }
+}
+```
+
+## 3️⃣ Service sử dụng Wildcards
+
+**ProductService.java**
 
 ```java
 import java.util.List;
 
-public class ExtendsExample {
+public class ProductService {
 
-    public static void makeSound(List<? extends Animal> animals) {
-        for (Animal a : animals) {
-            a.sound(); // ✅ đọc OK
+    // =========================
+    // 1. Upper Bounded Wildcard
+    // =========================
+    // Chỉ đọc dữ liệu (READ ONLY)
+    public static double calculateTotalPrice(List<? extends Product> products) {
+        double total = 0;
+        for (Product p : products) {
+            total += p.getPrice();
         }
+        // products.add(new Product(...)); ❌ KHÔNG cho phép
+        return total;
+    }
 
-        // animals.add(new Dog()); // ❌ KHÔNG cho phép
+    // =========================
+    // 2. Lower Bounded Wildcard
+    // =========================
+    // Ghi dữ liệu (WRITE)
+    public static void addElectronics(List<? super Electronics> list) {
+        list.add(new Electronics("Laptop", 1500));
+        list.add(new Electronics("Phone", 800));
+
+        // Electronics e = list.get(0); ❌ Không an toàn
+    }
+
+    // =========================
+    // 3. Unbounded Wildcard
+    // =========================
+    // Không quan tâm kiểu dữ liệu
+    public static void printList(List<?> list) {
+        for (Object o : list) {
+            System.out.println(o);
+        }
     }
 }
 ```
 
-**Gọi method**
+## 4️⃣ Chương trình chạy chính
+
+**Main.java**
 
 ```java
-List<Dog> dogs = List.of(new Dog(), new Dog());
-makeSound(dogs); // OK
-```
-
-🔍 Vì sao không add được?
-
-Compiler không biết chính xác kiểu con nào của Animal
-
-## 2️⃣ Ví dụ <? super T> (Consumer – chỉ ghi)
-
-**Sử dụng super**
-
-```java
+import java.util.ArrayList;
 import java.util.List;
 
-public class SuperExample {
+public class Main {
+    public static void main(String[] args) {
 
-    public static void addDogs(List<? super Dog> list) {
-        list.add(new Dog()); // ✅ ghi OK
-        // Dog d = list.get(0); // ❌ không an toàn
+        List<Electronics> electronics = new ArrayList<>();
+        electronics.add(new Electronics("TV", 1200));
+        electronics.add(new Electronics("Tablet", 600));
+
+        List<Food> foods = new ArrayList<>();
+        foods.add(new Food("Pizza", 20));
+        foods.add(new Food("Burger", 15));
+
+        // Upper Bounded
+        System.out.println("Total Electronics Price: "
+                + ProductService.calculateTotalPrice(electronics));
+        System.out.println("Total Food Price: "
+                + ProductService.calculateTotalPrice(foods));
+
+        // Lower Bounded
+        List<Product> products = new ArrayList<>();
+        ProductService.addElectronics(products);
+        System.out.println("Products size after adding electronics: " + products.size());
+
+        // Unbounded
+        ProductService.printList(electronics);
+        ProductService.printList(foods);
     }
 }
 ```
 
-**Gọi method**
+## 🔍 Phân tích & Ghi nhớ quan trọng
 
-```java
-List<Animal> animals = new ArrayList<>();
-addDogs(animals); // OK
+### 🔼 Upper Bounded <? extends T>
 
-List<Object> objects = new ArrayList<>();
-addDogs(objects); // OK
-```
+`List<? extends Product>`
 
-**Đọc dữ liệu**
+- Dùng khi chỉ đọc
+- Không thể add()
+- Áp dụng: tính toán, thống kê
 
-```java
-Object obj = animals.get(0); // chỉ đọc được Object
-```
+### 🔽 Lower Bounded <? super T>
 
-## 🧩 So sánh nhanh
+`List<? super Electronics>`
 
-| Tiêu chí  | `extends` | `super`      |
-| --------- | --------- | ------------ |
-| Quan hệ   | Con của T | Cha của T    |
-| Đọc (get) | ✅ T       | ❌ chỉ Object |
-| Ghi (add) | ❌         | ✅            |
-| Mục đích  | Read      | Write        |
+- Dùng khi chỉ ghi
+- Lấy ra chỉ là Object
+- Áp dụng: thêm dữ liệu vào collection
 
+### ⚪ Unbounded <?>
 
-## 🎯 Câu trả lời phỏng vấn chuẩn
+`List<?>`
 
-><\? extends T> dùng khi chỉ đọc dữ liệu từ collection, còn <? super T> dùng khi cần ghi dữ liệu vào collection, theo nguyên tắc PECS (Producer Extends, Consumer Super).
+- Dùng khi không quan tâm kiểu
+- Đọc dưới dạng Object
+- Không add() (trừ null)
+
+## 🧠 Quy tắc vàng – PECS
+
+> Producer Extends – Consumer Super
+
+| Mục đích            | Wildcard  |
+| ------------------- | --------- |
+| Đọc dữ liệu         | `extends` |
+| Ghi dữ liệu         | `super`   |
+| Không quan tâm kiểu | `?`       |
