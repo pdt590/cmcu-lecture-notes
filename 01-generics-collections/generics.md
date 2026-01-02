@@ -84,7 +84,7 @@ public class GenericDemo {
 }
 ```
 
-# 🎯 Ví dụ Generics với Class, Interface và Method
+# 🎯 Ví dụ Generic Interface, Class và Method
 
 ## 1️⃣ Generic Interface
 
@@ -107,7 +107,7 @@ import java.util.List;
 // Class generic
 public class MemoryRepository<T> implements Repository<T> {
 
-    private List<T> data = new ArrayList<>();
+    private ArrayList<T> data = new ArrayList<>();
 
     @Override
     public void save(T item) {
@@ -147,7 +147,7 @@ public class Main {
     public static void main(String[] args) {
 
         // Generic Class + Interface
-        Repository<String> stringRepo = new MemoryRepository<>();
+        MemoryRepository<String> stringRepo = new MemoryRepository<>();
         stringRepo.save("Java");
         stringRepo.save("Generics");
 

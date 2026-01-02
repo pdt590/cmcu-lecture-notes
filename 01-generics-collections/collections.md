@@ -32,7 +32,7 @@ Map
 ### 🔹 ArrayList
 
 ```java
-List<String> arrayList = new ArrayList<>();
+ArrayList<String> arrayList = new ArrayList<>();
 arrayList.add("A");
 arrayList.add("B");
 ```
@@ -40,7 +40,7 @@ arrayList.add("B");
 ### 🔹 LinkedList
 
 ```java
-List<String> linkedList = new LinkedList<>();
+LinkedList<String> linkedList = new LinkedList<>();
 linkedList.add("A");
 linkedList.add("B");
 ```
@@ -65,7 +65,7 @@ stack.push("B");
 ### 🔹 HashSet (không thứ tự)
 
 ```java
-Set<Integer> hashSet = new HashSet<>();
+HashSet<Integer> hashSet = new HashSet<>();
 hashSet.add(1);
 hashSet.add(2);
 ```
@@ -73,7 +73,7 @@ hashSet.add(2);
 ### 🔹 LinkedHashSet (giữ thứ tự chèn)
 
 ```java
-Set<Integer> linkedHashSet = new LinkedHashSet<>();
+LinkedHashSet<Integer> linkedHashSet = new LinkedHashSet<>();
 linkedHashSet.add(1);
 linkedHashSet.add(2);
 ```
@@ -81,7 +81,7 @@ linkedHashSet.add(2);
 ### 🔹 TreeSet (sắp xếp tăng dần)
 
 ```java
-Set<Integer> treeSet = new TreeSet<>();
+TreeSet<Integer> treeSet = new TreeSet<>();
 treeSet.add(3);
 treeSet.add(1);
 ```
@@ -91,7 +91,7 @@ treeSet.add(1);
 ### 🔹 PriorityQueue (ưu tiên)
 
 ```java
-Queue<Integer> priorityQueue = new PriorityQueue<>();
+PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
 priorityQueue.add(3);
 priorityQueue.add(1);
 ```
@@ -99,7 +99,7 @@ priorityQueue.add(1);
 ### 🔹 ArrayDeque (Deque – 2 đầu)
 
 ```java
-Deque<String> deque = new ArrayDeque<>();
+ArrayDeque<String> deque = new ArrayDeque<>();
 deque.addFirst("A");
 deque.addLast("B");
 ```
@@ -109,21 +109,21 @@ deque.addLast("B");
 ### 🔹 HashMap
 
 ```java
-Map<String, Integer> hashMap = new HashMap<>();
+HashMap<String, Integer> hashMap = new HashMap<>();
 hashMap.put("A", 1);
 ```
 
 ### 🔹 LinkedHashMap (giữ thứ tự chèn)
 
 ```java
-Map<String, Integer> linkedHashMap = new LinkedHashMap<>();
+LinkedHashMap<String, Integer> linkedHashMap = new LinkedHashMap<>();
 linkedHashMap.put("A", 1);
 ```
 
 ### 🔹 TreeMap (sắp xếp theo key)
 
 ```java
-Map<String, Integer> treeMap = new TreeMap<>();
+TreeMap<String, Integer> treeMap = new TreeMap<>();
 treeMap.put("B", 2);
 treeMap.put("A", 1);
 ```
