@@ -60,3 +60,6 @@
 - [Hibernate](./05-database/hibernate.md)
 
 ## Chapter 6. GUI programming
+
+- [JavaFX+css+JDBC](./06-gui-programming/javafx-css-jdbc.md)
+- [JavaFX+fxml+JDBC](./06-gui-programming/javafx-fxml-jdbc.md)
