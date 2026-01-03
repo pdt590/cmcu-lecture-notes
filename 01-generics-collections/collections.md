@@ -134,19 +134,3 @@ treeMap.put("A", 1);
 Hashtable<String, Integer> hashtable = new Hashtable<>();
 hashtable.put("A", 1);
 ```
-
-### 5️⃣ Utility Class – Collections
-
-```java
-Collections.sort(arrayList);
-Collections.reverse(arrayList);
-```
-
-### 6️⃣ Iterator – Duyệt Collection
-
-```java
-Iterator<String> it = arrayList.iterator();
-while (it.hasNext()) {
-    System.out.println(it.next());
-}
-```
