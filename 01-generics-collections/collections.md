@@ -104,7 +104,7 @@ deque.addFirst("A");
 deque.addLast("B");
 ```
 
-## 4️⃣ Map – Key / Value (KHÔNG phải Collection)
+## 4️⃣ Map – Key / Value
 
 ### 🔹 HashMap
 
