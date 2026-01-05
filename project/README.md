@@ -25,13 +25,14 @@ Java-Prog-MSSV-NguyenVanA // repo name
 
 ## Một số đề tài đề xuất
 
-- Hệ thống quản lý bán cafe/đồ uống hàng quán cafe
-- Hệ thống quản lý bán sách cho cửa hàng sách
-- Hệ thống quản lý bán oto cho đại lý oto
-- Hệ thống quản lý bán đồ ăn cho quán ăn
-- Hệ thống quản lý nhân sự tiền lương
-- Hệ thống quản lý bán hàng cho cửa hàng điện máy
-- Hệ thống quản lý bán hàng cho shop online
+- Phầm mềm quản lý quán cafe
+- Phầm mềm quản lý cửa hàng sách
+- Phầm mềm quản lý đại lý oto
+- Phầm mềm quản lý cửa hàng ăn
+- Phầm mềm quản lý cửa hàng hoa
+- Phầm mềm quản lý cửa hàng điện máy
+- Phầm mềm quản lý cửa hàng kính
+- Phầm mềm quản lý shop online (bán một mặt hàng nào đó)
 
 ## Lưu ý
 
