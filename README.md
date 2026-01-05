@@ -63,3 +63,7 @@
 
 - [JavaFX+css+JDBC](./06-gui-programming/javafx-css-jdbc.md)
 - [JavaFX+fxml+JDBC](./06-gui-programming/javafx-fxml-jdbc.md)
+
+## Project notes
+
+- [Project](./project/README.md)
