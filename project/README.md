@@ -18,7 +18,7 @@ Java-Prog-MSSV-NguyenVanA // repo name
    │     └── src/
    │
    └── BaiTap02/
-        └── src/
+         └── src/
 ```
 
 # Project notes
@@ -32,6 +32,7 @@ Java-Prog-MSSV-NguyenVanA // repo name
 - Phầm mềm quản lý cửa hàng hoa
 - Phầm mềm quản lý cửa hàng điện máy
 - Phầm mềm quản lý cửa hàng kính
+- Phần mềm quản lý cửa hàng tiện lợi
 - Phầm mềm quản lý shop online (bán một mặt hàng nào đó)
 
 ## Lưu ý
