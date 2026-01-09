@@ -45,7 +45,7 @@ public interface Observer<T> {
 }
 ```
 
-✔ Generic <T>
+- Generic \<T>
 
 ### ⭐ B) Subject Interface
 
@@ -96,8 +96,8 @@ public class EventPublisher<T> implements Subject<T> {
 }
 ```
 
-✔ Collection: List
-✔ Generic: <T>
+- Collection: List
+- Generic: \<T>
 
 ### ⭐ D) Concrete Observer
 

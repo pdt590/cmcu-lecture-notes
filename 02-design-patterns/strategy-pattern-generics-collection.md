@@ -43,9 +43,9 @@ public interface SortStrategy<T extends Comparable<T>> {
 }
 ```
 
-✔ Generic
-✔ Ràng buộc kiểu (Comparable)
-✔ Dùng Collection (List<T>)
+- Generic
+- Ràng buộc kiểu (Comparable)
+- Dùng Collection (List\<T>)
 
 ### ⭐ B) Concrete Strategies
 
@@ -115,9 +115,9 @@ public class SortContext<T extends Comparable<T>> {
 }
 ```
 
-✔ Strategy Pattern
-✔ Generics
-✔ Collection (Map, List)
+- Strategy Pattern
+- Generics
+- Collection (Map, List)
 
 ### ⭐ D) Client — App.java
 
