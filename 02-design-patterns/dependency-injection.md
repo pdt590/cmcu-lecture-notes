@@ -141,7 +141,7 @@ public class FieldInjectionApp {
 - Vi phạm encapsulation
 - Không thấy dependency từ constructor
 
-### 5. Main class (Manual DI – không dùng Spring)
+### 5. Main class (Manual DI)
 
 **Main.java**
 
