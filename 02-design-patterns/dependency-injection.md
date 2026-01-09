@@ -82,10 +82,10 @@ public class ConstructorInjectionApp {
 
 **Đặc điểm**
 
-✔ Dependency bắt buộc
-✔ Class immutable
-✔ Dễ test (mock)
-✔ Được Spring khuyến nghị
+- Dependency bắt buộc
+- Class immutable
+- Dễ test (mock)
+- Được Spring khuyến nghị
 
 ### 3. Setter Injection (Tùy chọn)
 
@@ -112,9 +112,9 @@ public class SetterInjectionApp {
 
 **Đặc điểm**
 
-✔ Dependency có thể thay đổi
-✔ Phù hợp dependency optional
-❌ Dễ gây lỗi nếu quên set
+- Dependency có thể thay đổi
+- Phù hợp dependency optional
+- Dễ gây lỗi nếu quên set
 
 ### 4. Field Injection (Không khuyến nghị 🚫)
 
@@ -136,10 +136,10 @@ public class FieldInjectionApp {
 
 **Đặc điểm**
 
-✔ Code ngắn
-❌ Khó test
-❌ Vi phạm encapsulation
-❌ Không thấy dependency từ constructor
+- Code ngắn
+- Khó test
+- Vi phạm encapsulation
+- Không thấy dependency từ constructor
 
 ### 5. Main class (Manual DI – không dùng Spring)
 
