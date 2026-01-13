@@ -3,21 +3,21 @@
 ## 📁 Cấu trúc thư mục bài tập trên github
 
 ```java
-Java-Prog-MSSV-NguyenVanA // repo name
+prog3003-MSSV-NguyenVanA // repo name
 │
-├──Chuong01/
+├──Chapter01/
 │  │
-│  ├── BaiTap01/
+│  ├── ExOne/
 │  │     └── src/
-│  │
-│  └── BaiTap02/
+│  └── ExTwo/
 │        └── src/
-└──Chuong02/
+└──Chapter02/
    │
-   ├── BaiTap01/
+   ├── ExOne/
    │     └── src/
-   │
-   └── BaiTap02/
+   ├── ExTwo/
+   │     └── src/
+   └── ExThree/
          └── src/
 ```
 

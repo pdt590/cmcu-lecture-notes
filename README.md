@@ -1,4 +1,4 @@
-# PROG3003-Java Programming
+# prog3003-java-programming
 
 ## Chapter 1. Generics & Collections
 
