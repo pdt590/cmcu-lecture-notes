@@ -1,3 +1,15 @@
-# Lecture notes for cmcu courses
+# prog2005-programming-fundamentals
 
-- [PROG3003-Java Programming](https://github.com/pdt590/cmcu-lecture-notes/tree/prog3003-java-programming)
+## Chapter 1. Python Basics
+
+## Chapter 2. Conditional & Looping Statements
+
+## Chapter 3. Arrays, Strings, Lists
+
+## Chapter 4. Class & Object-Oriented Programming
+
+## Chapter 5. File I/O & Data Visualization with Matplotlib
+
+## Project notes
+
+- [Project](./project/README.md)
