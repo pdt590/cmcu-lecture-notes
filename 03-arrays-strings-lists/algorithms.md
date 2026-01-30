@@ -120,7 +120,26 @@ def bubble_sort(arr):
 
 # Search Algorithms
 
-**Định nghĩa**: Là một thuật toán tìm kiếm hiệu quả, được sử dụng để tìm một giá trị mục tiêu trong một mảng đã được sắp xếp (có thể theo thứ tự tăng dần hoặc giảm dần).
+## Tìm kiếm tuyến tính (Linear search)
+
+```python
+def linear_search(arr, target):
+    # Duyệt qua từng phần tử trong mảng
+    # range(len(arr)) tạo dãy số từ 0 đến n-1
+    for i in range(len(arr)):
+        # So sánh phần tử tại vị trí i với target
+        if arr[i] == target:
+            # Nếu tìm thấy, trả về vị trí đó
+            return i
+
+    # Nếu duyệt hết mà không tìm thấy, trả về -1
+    # -1 là giá trị đặc biệt thường dùng để chỉ "không tìm thấy"
+    return -1
+```
+
+## Tìm kiếm nhị phân (Binary search)
+
+**Định nghĩa**: Là một thuật toán tìm kiếm hiệu quả, được sử dụng để tìm một giá trị mục tiêu **trong một mảng đã được sắp xếp** (có thể theo thứ tự tăng dần hoặc giảm dần).
 
 ### Các bước
 
