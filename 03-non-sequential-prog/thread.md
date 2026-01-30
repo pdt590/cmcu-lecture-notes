@@ -1,6 +1,6 @@
 # 🧵 Ví dụ: Multithread
 
-## 🎯 Sử dụng Thread
+## 🎯 Sử dụng Thread cơ bản
 
 Tạo 2 luồng:
 
@@ -85,8 +85,78 @@ LetterThread: C
 | `start()` | Tạo **luồng mới**, gọi `run()`                 |
 | `run()`   | Chạy như **hàm bình thường**, không tạo thread |
 
+## 🎯 Sử dụng Thread đầy đủ
 
-## 🎯 Sử dụng Runnable
+- Tạo 2 thread
+- Cho chúng chạy song song
+- Main thread chờ 2 thread kết thúc
+
+### 📌 Code hoàn chỉnh
+
+```java
+class MyThread extends Thread {
+
+    // run(): chứa logic sẽ chạy trong thread
+    @Override
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(getName() + " đang chạy, i = " + i);
+            try {
+                // sleep(): tạm dừng thread 1 giây
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println(getName() + " bị gián đoạn");
+            }
+        }
+        System.out.println(getName() + " kết thúc");
+    }
+}
+
+public class ThreadDemo {
+    public static void main(String[] args) throws InterruptedException {
+
+        MyThread t1 = new MyThread();
+        MyThread t2 = new MyThread();
+
+        t1.setName("Thread-1");
+        t2.setName("Thread-2");
+
+        System.out.println("Trạng thái trước khi start:");
+        System.out.println("t1 isAlive? " + t1.isAlive());
+        System.out.println("t2 isAlive? " + t2.isAlive());
+
+        // start(): tạo luồng mới và gọi run()
+        t1.start();
+        t2.start();
+
+        System.out.println("\nTrạng thái sau khi start:");
+        System.out.println("t1 isAlive? " + t1.isAlive());
+        System.out.println("t2 isAlive? " + t2.isAlive());
+
+        // join(): main thread chờ t1 và t2 kết thúc
+        t1.join();
+        t2.join();
+
+        System.out.println("\nSau khi join:");
+        System.out.println("t1 isAlive? " + t1.isAlive());
+        System.out.println("t2 isAlive? " + t2.isAlive());
+
+        System.out.println("Main thread kết thúc");
+    }
+}
+```
+
+### 🎯 Tóm tắt
+
+| Phương thức | Ý nghĩa             |
+| ----------- | ------------------- |
+| start()     | Tạo thread mới      |
+| run()       | Logic thread        |
+| sleep()     | Tạm dừng            |
+| join()      | Chờ thread          |
+| isAlive()   | Kiểm tra trạng thái |
+
+## 🎯 Sử dụng Runnable cơ bản
 
 Tạo 2 luồng:
 
@@ -94,6 +164,8 @@ Tạo 2 luồng:
 - Luồng 2 in chữ A → E
 
 Hai luồng chạy song song
+
+> Implement lại ví dụ của Thread thay thế bằng Runnable
 
 ### 📌 Code hoàn chỉnh
 
@@ -163,7 +235,74 @@ LetterRunnable: B
 
 👉 Thứ tự không cố định, do scheduler quyết định.
 
-## 🧵 Khi nào dùng Thread và khi nào dùng Runnable?
+## 🎯 Sử dụng Runnable đầy đủ
+
+- Tạo 2 thread
+- Cho chúng chạy song song
+- Main thread chờ 2 thread kết thúc
+
+> Implement lại ví dụ của Thread thay thế bằng Runnable
+
+### 📌 Code hoàn chỉnh
+
+```java
+class MyRunnable implements Runnable {
+
+    // run(): logic sẽ chạy trong thread
+    @Override
+    public void run() {
+        String threadName = Thread.currentThread().getName();
+
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(threadName + " đang chạy, i = " + i);
+            try {
+                // sleep(): tạm dừng thread hiện tại 1 giây
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println(threadName + " bị gián đoạn");
+            }
+        }
+
+        System.out.println(threadName + " kết thúc");
+    }
+}
+
+public class RunnableDemo {
+    public static void main(String[] args) throws InterruptedException {
+
+        // Tạo đối tượng Runnable
+        MyRunnable task = new MyRunnable();
+
+        // Gắn Runnable vào Thread
+        Thread t1 = new Thread(task, "Thread-1");
+        Thread t2 = new Thread(task, "Thread-2");
+
+        System.out.println("Trạng thái trước khi start:");
+        System.out.println("t1 isAlive? " + t1.isAlive());
+        System.out.println("t2 isAlive? " + t2.isAlive());
+
+        // start(): tạo luồng mới và gọi run()
+        t1.start();
+        t2.start();
+
+        System.out.println("\nTrạng thái sau khi start:");
+        System.out.println("t1 isAlive? " + t1.isAlive());
+        System.out.println("t2 isAlive? " + t2.isAlive());
+
+        // join(): main thread chờ t1 và t2 kết thúc
+        t1.join();
+        t2.join();
+
+        System.out.println("\nSau khi join:");
+        System.out.println("t1 isAlive? " + t1.isAlive());
+        System.out.println("t2 isAlive? " + t2.isAlive());
+
+        System.out.println("Main thread kết thúc");
+    }
+}
+```
+
+## 🧵 So sánh Thread và Runnable?
 
 ### 1️⃣ Dùng Thread khi nào?
 
@@ -235,7 +374,7 @@ public class Main {
 
 📌 Best Practice: dùng Runnable
 
-## 🎯 Sử dụng Thread Pool
+## 🎯 Thread Pool
 
 ### 🧵 Thread Pool là gì?
 
