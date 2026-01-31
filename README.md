@@ -43,7 +43,7 @@
 ## Chapter 3. Non-sequential programming
 
 - Multithread programming
-  - [Thread](./03-non-sequential-prog/thread.md)
+  - [Thread+Runnable](./03-non-sequential-prog/thread-runnable.md)
 
 - Asynchronous programming
   - [CompletableFuture](./03-non-sequential-prog/completablefuture.md)
