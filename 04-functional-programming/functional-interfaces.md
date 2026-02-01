@@ -124,7 +124,7 @@ public class Main {
 
 ### 1️⃣ Predicate\<T>
 
-👉 Kiểm tra điều kiện – trả về boolean
+👉 Nhận input có kiểu T, kiểm tra điều kiện và trả về output kiểu `boolean`
 
 ```java
 import java.util.function.Predicate;
@@ -143,7 +143,7 @@ public class PredicateExample {
 
 ### 2️⃣ Consumer\<T>
 
-👉 Nhận dữ liệu – không trả về gì
+👉 Nhận input có kiểu T, không trả về gì
 
 ```java
 import java.util.function.Consumer;
@@ -160,7 +160,7 @@ public class ConsumerExample {
 
 ### 3️⃣ Function\<T, R>
 
-👉 Chuyển đổi dữ liệu
+👉 Chuyển đổi dữ liệu: Nhận input có kiểu T, trả về output có kiểu R.
 
 ```java
 import java.util.function.Function;
@@ -178,7 +178,7 @@ public class FunctionExample {
 
 ### 4️⃣ Supplier\<T>
 
-👉 Cung cấp dữ liệu – không có input
+👉 Không có input, trả về output kiểu T.
 
 ```java
 import java.util.function.Supplier;
@@ -194,7 +194,7 @@ public class SupplierExample {
 
 ### 5️⃣ UnaryOperator\<T>
 
-👉 Function với input = output
+👉 Function nhận vào 1 input duy nhất và trả về output cùng kiểu dữ liệu T.
 
 ```java
 import java.util.function.UnaryOperator;
@@ -211,7 +211,7 @@ public class UnaryOperatorExample {
 
 ### 6️⃣ BinaryOperator\<T>
 
-👉 BiFunction với 2 input cùng kiểu
+👉 BiFunction nhận vào 2 input và trả về 1 output. Tât cả cùng kiểu dữ liệu T.
 
 ```java
 import java.util.function.BinaryOperator;
