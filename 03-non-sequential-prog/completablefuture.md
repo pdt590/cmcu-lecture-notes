@@ -1,6 +1,4 @@
-# 🧵 Ví dụ: Async sử dụng CompletableFuture
-
-## 🎯 Bài toán **đơn giản**
+# 🎯 Bài toán **đơn giản**
 
 Giả sử:
 
@@ -9,7 +7,7 @@ Giả sử:
 
 Khi tác vụ xong thì xử lý kết quả
 
-### ✅ Code hoàn chỉnh
+## ✅ Code hoàn chỉnh
 
 ```java
 import java.util.concurrent.CompletableFuture;
@@ -47,7 +45,7 @@ public class CompletableFutureExample {
 }
 ```
 
-### 🧪 Kết quả chạy
+## 🧪 Kết quả chạy
 
 ```bash
 Start
@@ -57,7 +55,7 @@ Result: Hello Async
 
 👉 Main thread không chờ tác vụ hoàn thành.
 
-## 🎯 Bài toán **nâng cao**
+# 🎯 Bài toán **nâng cao**
 
 - Chạy một tác vụ bất đồng bộ
 - Biến đổi dữ liệu
@@ -66,7 +64,7 @@ Result: Hello Async
 
 Minh họa blocking vs non-blocking
 
-### ✅ Code hoàn chỉnh
+## ✅ Code hoàn chỉnh
 
 ```ruby
 import java.util.concurrent.CompletableFuture;
@@ -122,7 +120,7 @@ public class CompletableFutureDemo {
 }
 ```
 
-### 🧪 Kết quả chạy (tham khảo)
+## 🧪 Kết quả chạy (tham khảo)
 
 ```java
 Main thread starts
@@ -134,9 +132,9 @@ After join()
 After get()
 ```
 
-### 🧠 Giải thích từng phương thức
+## 🧠 Giải thích từng phương thức
 
-#### 1️⃣ supplyAsync()
+### 1️⃣ supplyAsync()
 
 ```java
 CompletableFuture.supplyAsync(() -> "hello");
@@ -145,7 +143,7 @@ CompletableFuture.supplyAsync(() -> "hello");
 - Chạy bất đồng bộ
 - Có giá trị trả về
 
-#### 2️⃣ thenApply()
+### 2️⃣ thenApply()
 
 ```java
 .thenApply(result -> result.toUpperCase());
@@ -154,7 +152,7 @@ CompletableFuture.supplyAsync(() -> "hello");
 - Biến đổi dữ liệu
 - Trả về CompletableFuture mới
 
-#### 3️⃣ thenAccept()
+### 3️⃣ thenAccept()
 
 ```java
 .thenAccept(result -> System.out.println(result));
@@ -163,7 +161,7 @@ CompletableFuture.supplyAsync(() -> "hello");
 - Nhận dữ liệu
 - Không trả về kết quả
 
-#### 4️⃣ thenRun()
+### 4️⃣ thenRun()
 
 ```java
 .thenRun(() -> System.out.println("Done"));
@@ -172,7 +170,7 @@ CompletableFuture.supplyAsync(() -> "hello");
 - Chạy sau khi hoàn thành
 - Không nhận dữ liệu, không trả về
 
-#### 5️⃣ join()
+### 5️⃣ join()
 
 ```java
 future.join();
@@ -182,7 +180,7 @@ future.join();
 - Ném unchecked exception
 - Dùng nhiều trong lambda / stream
 
-#### 6️⃣ get()
+### 6️⃣ get()
 
 ```java
 future.get();
@@ -191,3 +189,142 @@ future.get();
 - Blocking
 - Ném checked exception
 - Phổ biến trong code truyền thống
+
+# thenCombine() và allOf()
+
+## Ví dụ thenCombine()
+
+> Kết hợp kết quả của 2 CompletableFuture độc lập
+
+🎯 Mục tiêu
+
+- Chạy 2 tác vụ song song
+- Khi cả hai hoàn thành, kết hợp kết quả
+
+### Code ví dụ
+
+```java
+import java.util.concurrent.CompletableFuture;
+
+public class ThenCombineDemo {
+
+    public static void main(String[] args) {
+
+        CompletableFuture<Integer> future1 =
+                CompletableFuture.supplyAsync(() -> {
+                    sleep(1000);
+                    return 10;
+                });
+
+        CompletableFuture<Integer> future2 =
+                CompletableFuture.supplyAsync(() -> {
+                    sleep(1500);
+                    return 20;
+                });
+
+        // thenCombine: chỉ chạy khi future1 và future2 đều hoàn thành
+        CompletableFuture<Integer> combined =
+                future1.thenCombine(future2, (r1, r2) -> {
+                    return r1 + r2;
+                });
+
+        // lấy kết quả
+        Integer result = combined.join();
+        System.out.println("Kết quả thenCombine = " + result);
+    }
+
+    private static void sleep(long ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+```
+
+### Giải thích
+
+- future1 và future2 chạy song song
+- `thenCombine()`:
+  - Chờ cả hai xong
+  - Nhận 2 kết quả
+  - Trả về CompletableFuture mới
+
+## Ví dụ allOf()
+
+> Chờ nhiều CompletableFuture hoàn thành (không quan tâm kết quả trực tiếp)
+
+🎯 Mục tiêu
+
+- Chạy nhiều tác vụ song song
+- Chờ tất cả hoàn thành
+- Sau đó xử lý tiếp
+
+### Code ví dụ
+
+```java
+import java.util.concurrent.CompletableFuture;
+import java.util.List;
+
+public class AllOfDemo {
+
+    public static void main(String[] args) {
+
+        CompletableFuture<String> f1 =
+                CompletableFuture.supplyAsync(() -> {
+                    sleep(1000);
+                    return "Task 1";
+                });
+
+        CompletableFuture<String> f2 =
+                CompletableFuture.supplyAsync(() -> {
+                    sleep(1500);
+                    return "Task 2";
+                });
+
+        CompletableFuture<String> f3 =
+                CompletableFuture.supplyAsync(() -> {
+                    sleep(500);
+                    return "Task 3";
+                });
+
+        // allOf: chờ tất cả future hoàn thành
+        CompletableFuture<Void> all =
+                CompletableFuture.allOf(f1, f2, f3);
+
+        // xử lý sau khi tất cả hoàn thành
+        all.thenRun(() -> {
+            System.out.println("Tất cả task đã hoàn thành");
+
+            System.out.println(f1.join());
+            System.out.println(f2.join());
+            System.out.println(f3.join());
+        }).join();
+    }
+
+    private static void sleep(long ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+```
+
+### Giải thích
+
+- `allOf()`:
+  - Trả về `CompletableFuture<Void>`
+  - Không chứa kết quả
+- Muốn lấy kết quả → `join()` từng future
+
+## [Tổng kết] So sánh nhanh
+
+| Tiêu chí  | thenCombine          | allOf                   |
+| --------- | -------------------- | ----------------------- |
+| Số future | 2                    | Nhiều                   |
+| Kết quả   | Có                   | Không                   |
+| Dùng khi  | Kết hợp 2 kết quả    | Chờ tất cả              |
+| Trả về    | CompletableFuture\<T> | CompletableFuture\<Void> |
