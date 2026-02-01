@@ -320,7 +320,7 @@ public class AllOfDemo {
   - Không chứa kết quả
 - Muốn lấy kết quả → `join()` từng future
 
-## [Tổng kết] So sánh nhanh
+## So sánh nhanh
 
 | Tiêu chí  | thenCombine          | allOf                   |
 | --------- | -------------------- | ----------------------- |
