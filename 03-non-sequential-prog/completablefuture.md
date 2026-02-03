@@ -143,6 +143,8 @@ CompletableFuture.supplyAsync(() -> "hello");
 - Chạy bất đồng bộ
 - Có giá trị trả về
 
+> runAsync(): Chạy bất đồng bộ và ko có giá trị trả về
+
 ### 2️⃣ thenApply()
 
 ```java
@@ -177,7 +179,7 @@ future.join();
 ```
 
 - Blocking
-- Ném unchecked exception
+- Ném vào unchecked exception (ko sử dụng exception để bắt lỗi)
 - Dùng nhiều trong lambda / stream
 
 ### 6️⃣ get()
@@ -187,7 +189,7 @@ future.get();
 ```
 
 - Blocking
-- Ném checked exception
+- Ném vào checked exception nếu có lỗi (`ExecutionException`, `InterruptedException`)
 - Phổ biến trong code truyền thống
 
 # thenCombine() và allOf()
