@@ -5,14 +5,16 @@
 ```python
 prog2005-MSSV-NguyenVanA // repo name
 │
-├──Chapter01/
+├──Luyentap01/
 │  │
-│  ├── ExOne.py
-│  └── ExTwo.py
+│  ├── Main.py
+│  ├── ExOne.png
+│  └── ExTwo.png
 │
-└──Chapter02/
+└──Luyentap02/
    │
-   ├── ExOne.py
-   ├── ExTwo.py
-   └── ExThree.py
+   ├── Main.py
+   ├── ExOne.png
+   ├── ExTwo.png
+   └── ExThree.png
 ```
