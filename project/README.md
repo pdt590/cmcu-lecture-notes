@@ -5,20 +5,25 @@
 ```java
 prog3003-MSSV-NguyenVanA // repo name
 │
-├──Chapter01/
+├──Luyentap01/
 │  │
 │  ├── ExOne/
-│  │     └── src/
+│  │     ├── src/
+│  │     └── ExOne.png
 │  └── ExTwo/
-│        └── src/
-└──Chapter02/
+│        ├── src/
+│        └── ExTwo.png
+└──Luyentap02/
    │
    ├── ExOne/
-   │     └── src/
+   │     ├── src/
+   │     └── ExOne.png
    ├── ExTwo/
-   │     └── src/
+   │     ├── src/
+   │     └── ExTwo.png
    └── ExThree/
-         └── src/
+         ├── src/
+         └── ExThree.png
 ```
 
 # Project notes
